@@ -28,7 +28,7 @@ Images overlaid with this script allows the investigator to:
 3) Save one file with image counts instead of three files
 
 --------------------------------------------------------------------------------------------------------------------------------------
-#Semi-automated Image Analysis Script
+# Automated Image Analysis Script
 <p align="center">
   <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots1.PNG?raw=true" alt="Input GUI"/>
 </p>
