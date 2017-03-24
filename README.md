@@ -18,10 +18,8 @@ The script then merges the color images into a RGB image stack based on file nam
 <p align="center">
   20.5a
 </p>
-
 When manually counting positively labeled cells, each color (red, green or blue) in the merged image can be scrolled through in the image stack; instead of switching between images in different windows. 
 Images overlaid with this script allows the investigator to:
-
 1) Easily compare and analyze differences between images and experimental conditions
 2) Merge batches of 100s of images, saving time by not having to manually color and merge images
 3) Save one file with image counts instead of three files
