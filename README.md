@@ -5,7 +5,8 @@ Color Merge Script
 To analyze cells in different experimental conditions, image analysis was necessary.  
 Cells were labeled with three fluorescent probes indicative of nuclei, proliferating cells, and cell type (DAPI, CY5, and CY3, respectively).  
 Images were captured using light at the excitation wavelengths of each fluorescent label. 
-[![Images of the same area at three excitation wavelengths](https://github.com/caticoa3/ImageJ_Semi-auto/ReadMe_images/Before_Pseudo-color.png)]
+![Images of the same area at three excitation wavelengths]
+(https://github.com/caticoa3/ImageJ_Semi-auto/ReadMe_images/Before_Pseudo-color.png)
  
                   20a.5 DAPI                                      20a.5 CY5                                        20a.5 CY3
 
