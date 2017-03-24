@@ -7,9 +7,6 @@ Cells were labeled with three fluorescent probes indicative of nuclei, prolifera
 Images were captured using light at the excitation wavelengths of each fluorescent label.
 
 ![Same area imaged with three excitation wavelengths](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/BeforeRGB_Labeled1.png)
-<p align="center">
-20a.5 DAPI                            20a.5 CY5                                      20a.5 CY3
-</p>
                  
 The script applies a color to images based on file name “suffix” (DAPI -> Blue, CY5 -> Green, and CY3 -> Red).  
  
