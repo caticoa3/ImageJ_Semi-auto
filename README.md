@@ -7,8 +7,7 @@ Cells were labeled with three fluorescent probes indicative of nuclei, prolifera
 Images were captured using light at the excitation wavelengths of each fluorescent label.
 
 ![Same area imaged with three excitation wavelengths](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/Before_Pseudo-color.png)
-20a.5 DAPI                                      20a.5 CY5                                        20a.5 CY3
-
+                  20a.5 DAPI                                      20a.5 CY5                                        20a.5 CY3
 The script applies a color to images based on file name “suffix” (DAPI -> Blue, CY5 -> Green, and CY3 -> Red).  
  
 The script then merges the color images into a RGB image stack based on file name “prefix” (i.e. - 20a.5)
