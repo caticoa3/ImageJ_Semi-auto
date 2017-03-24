@@ -27,7 +27,7 @@ Images overlaid with this script allows the investigator to:
 
 Automated Image Analysis Script
 <p align="center">
-  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots1.png?raw=true" alt="Input GUI"/>
+  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots1.PNG?raw=true" alt="Input GUI"/>
 </p>
 Scripted ImageJ to perform the following tasks:
 1)	Automatically count the number of cells (DAPI labeled nuclei)
@@ -43,7 +43,7 @@ In this case a web-like morphology is indicative of the cells of interest.  This
 Eliminates guessing if the intensity of a cell indicates the cell is positively labeled.
 The script guides the researcher to count only those cells with the appropriate morphology.
 <p align="center">
-  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots2.png?raw=true" alt="Input GUI and Results Table"/>
+  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots2.PNG?raw=true" alt="Input GUI and Results Table"/>
 </p>
 
 Similarly for images of CY5 and DAPI labeled nuclei (Rows 2 – 4 in proceeding image).  The script can accurately count nuclei because they are spaced apart and their contrast or intensity above background “noise” is large.  
