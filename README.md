@@ -6,7 +6,7 @@ To analyze cells in different experimental conditions, image analysis was necess
 Cells were labeled with three fluorescent probes indicative of nuclei, proliferating cells, and cell type (DAPI, CY5, and CY3, respectively).  
 Images were captured using light at the excitation wavelengths of each fluorescent label. 
 [![Images of the same area at three excitation wavelengths]
-(ImageJ_Semi-auto/Before Pseudo-Color.png)]
+(./Before Pseudo-Color.png)]
  
                   20a.5 DAPI                                      20a.5 CY5                                        20a.5 CY3
 
