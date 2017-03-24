@@ -24,3 +24,36 @@ Images overlaid with this script allows the investigator to:
 1) Easily compare and analyze differences between images and experimental conditions
 2) Merge batches of 100s of images, saving time by not having to manually color and merge images
 3) Save one file with image counts instead of three files
+
+Automated Image Analysis Script
+<p align="center">
+  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots1.png?raw=true" alt="Input GUI"/>
+</p>
+Scripted ImageJ to perform the following tasks:
+1)	Automatically count the number of cells (DAPI labeled nuclei)
+2)	Automatically count the number of cells that had proliferated (CY5 labeled nuclei) 
+3)	Help determine which cells had changed into a specific cell type (CY3 label).   
+
+The script was designed to identify positively labeled cells based on intensity and morphology.  
+
+A folder with the images of interest is selected.  Cells/pixels with CY3 intensity within the input threshold range are highlighted in red, see “Analysis of 20a.5 CY3” in proceeding image montage.
+
+In this case a web-like morphology is indicative of the cells of interest.  This morphology fits better in a circular area rather than an elongated area.  Therefore, values for circularity from 0.6 to 1 (where 1 is a circle) are appropriate.  The script then highlights cells or clusters of pixels (within the intensity threshold) in white, if their circularity and area are within the values set in the “Particle Sizes to Count” prompt.  
+	
+Eliminates guessing if the intensity of a cell indicates the cell is positively labeled.
+The script guides the researcher to count only those cells with the appropriate morphology.
+<p align="center">
+  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots2.png?raw=true" alt="Input GUI and Results Table"/>
+</p>
+
+Similarly for images of CY5 and DAPI labeled nuclei (Rows 2 – 4 in proceeding image).  The script can accurately count nuclei because they are spaced apart and their contrast or intensity above background “noise” is large.  
+
+A positive count creates an outline of the cell nuclei which is color coded and overlaid on the nuclei (DAPI image).  Outlines in red, blue and green indicate positive DAPI, CY5, and CY3 counts (see images labeled “Analysis of …” in proceeding image montage).
+
+Counts for images from multiple fields of views in the selected directory are printed into a table, which can then be compiled into excel for data processing and statistical analysis.  
+
+This script analyzes images in batches, saves time, and makes the analysis more accurate and far less cumbersome compared to manual analysis.
+
+<p align="center">
+  <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/SemiAutomatic_Image_Analysis.png?raw=true" alt="Semi-automated Cell Analysis"/>
+</p>
