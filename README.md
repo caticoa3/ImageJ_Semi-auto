@@ -13,7 +13,7 @@ The script applies a color to images based on file name “suffix” (DAPI -> Bl
  
 The script then merges the color images into a RGB image stack based on file name “prefix” (i.e. - 20a.5)
 <p align="center">
-  <![Pseudo-color applied](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/20a.5(RGB)_Merged.png) />
+  <(https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/20a.5(RGB)_Merged.png) />
 </p>
 
 
