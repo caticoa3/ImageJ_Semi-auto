@@ -1,0 +1,215 @@
+//v.2 Fixes a bug with CY3 images when the threshold is too high or there is very low immunoreactivity, which yeilds nil CY3 count and no mask is created after "Analyze Particles..." is run
+//Still counts nuclei in areas that are considered positvive
+
+    dir = getDirectory("Choose a Directory ");
+    list = getFileList(dir);
+    start = getTime();
+
+  width=512; height=512;
+  Dialog.create ("Threshold CY3");
+  Dialog.addNumber("Lower_Threshold:", 70);
+  Dialog.addNumber("Upper_Threshold:", 255);
+  Dialog.addCheckbox("Save Analysis Images", false)
+  Dialog.show();
+  
+  Lower_Threshold = Dialog.getNumber();
+  Upper_Threshold = Dialog.getNumber();
+  savestacks = Dialog.getCheckbox();
+  if (savestacks == true) {store = getDirectory("Chose Destination for Image Analysis Stacks");} 
+
+  width=512; height=512;
+  Dialog.create ("Threshold CY5");
+  Dialog.addNumber("Lower_CY5:", 28);
+  Dialog.addNumber("Upper_CY5:", 255);
+  Dialog.show();
+
+  Lower_CY5 = Dialog.getNumber();
+  Upper_CY5= Dialog.getNumber();
+ 
+  Dialog.create("Particle Sizes to Count");  
+  Dialog.addMessage("Enter the Min and Max Particle Parameters");
+  Dialog.addNumber("Min_Particle_Area", 120);
+  Dialog.addNumber("Max_Particle_Area", 30000);
+  Dialog.addNumber("Min Circularity",0.0);
+  Dialog.addNumber("Max Circularity",0.650); 
+  Dialog.show();
+
+  Min_Particle_Area = Dialog.getNumber();
+  Max_Particle_Area = Dialog.getNumber();
+  minC = Dialog.getNumber();
+  maxC = Dialog.getNumber();
+  
+  width=512; height=512;
+  Dialog.create("Nuclei Sizes to Count");  
+  Dialog.addMessage("Enter the Min and Max Nuclei Values");
+  Dialog.addNumber("Min_Nucleus_Area", 50);
+  Dialog.addNumber("Max_Nucleus_Area", 700);
+  Dialog.addNumber("Min Circularity",0);
+  Dialog.addNumber("Max Circularity",1);  
+  Dialog.show();
+
+  Min_Nucleus_Area = Dialog.getNumber();
+  Max_Nucleus_Area = Dialog.getNumber();
+  minCN = Dialog.getNumber();
+  maxCN = Dialog.getNumber();
+  
+ //  Here we make a table where the counts for each image will be printed
+            title1 = "Count Summary";
+            title2 = "["+title1+"]";
+            f = title2;
+                if (isOpen(title1)!=true) {
+                        run("New... ", "name="+title2+" type=Table width=400 height=400");
+            	print(f, "\\Headings:n\tDAPI\tCY5\tCY3");
+                }
+
+    setPasteMode("Transparent");
+    setBatchMode(false);
+     for (i=0; i<list.length; i++) {
+        path = dir+list[i];
+        showProgress(i, list.length);
+        if (!endsWith(path,"/")) open(path);
+        titlec = getTitle();
+        c = indexOf(titlec, " ");
+
+
+        if (nImages>=1 && (indexOf(list[i],"P")>=c || indexOf(list[i],"P")==-1)) {
+        	
+	if (nImages>=1 && (indexOf(list[i],"Cy5")!=-1 || indexOf(list[i],"CY5")!=-1)) {
+          		run("8-bit");
+          		titleCY5 = getTitle();
+		prefix = substring(titleCY5, 0, c);
+		setThreshold(Lower_CY5, Upper_CY5);
+		run("Convert to Mask");
+		run("Invert");
+		run("Analyze Particles...", "size="+Min_Nucleus_Area+"-"+Max_Nucleus_Area+" circularity="+minCN+"-"+maxCN+" show=Outlines clear include");
+          			nResultsCY5 = nResults();
+			if (nResultsCY5==0) {
+					
+				run("RGB Color");
+				run("Duplicate...","title=[Analysis of "+titleCY5+"]");
+				run("Invert");
+				IDCY5 = getImageID();
+				selectWindow(titleCY5);
+				run("Revert");	run("8-bit");	run("RGB Color");
+          				Cy5Count = nResultsCY5; 
+				
+				}
+			
+			if (nResultsCY5 > 0) {
+				run("Blue");
+          				run("Invert");
+          				IDCY5 = getImageID();
+          				selectWindow(titleCY5);
+          				run("Revert");	run("8-bit");	run("RGB Color");    
+          				imageCalculator("Transparant-zero create", titleCY5, IDCY5);
+          				rename("Analysis of " + titleCY5);          				       
+				}
+
+						
+        	}  
+        	
+	if (nImages>=1 && (indexOf(list[i],"Cy3")!=-1 || indexOf(list[i],"CY3")!=-1)) {
+          		run("8-bit");
+          		titleCY3 = getTitle();
+          		prefix = substring(titleCY3, 0, c);
+          		setThreshold(Lower_Threshold, Upper_Threshold);
+          		run("Analyze Particles...", "size="+Min_Particle_Area+"-"+Max_Particle_Area+" circularity="+minC+"-"+maxC+" show=Masks clear");
+          			nResultsCY3 = nResults();
+			if (nResultsCY3==0) {
+					
+				run("RGB Color");
+				run("Duplicate...","title=[Analysis of "+titleCY3+"]");
+				selectWindow(titleCY3);
+				run("Revert");	run("8-bit");	run("RGB Color");
+          				Cy3Count = nResultsCY3; 
+				}
+			
+			if (nResultsCY3 > 0) {
+				run("Invert");  
+				ID1 = getImageID();
+				run("RGB Color");
+          				selectWindow(titleCY3);
+          				run("RGB Color");
+          				imageCalculator("Transparant-zero create", titleCY3, ID1);
+          				rename("Analysis of " + titleCY3);
+          				selectWindow(titleCY3);
+          				run("Revert"); 	run("8-bit");	run("RGB Color");}
+		
+        	}    
+       
+		
+        	if(nImages>=1 && indexOf(list[i],"DAPI")!=-1 && indexOf(list[i],prefix)!=-1 && nResultsCY3!= 0) {
+          		run("8-bit");
+          		ID2 = getImageID();
+          		imageCalculator("AND", ID2, ID1);
+          		selectImage(ID1);    close();
+          		title3=getTitle();
+          		run("MultiThresholder", "Maximum Entropy apply");
+          		run("Watershed");
+          		run("Invert");
+          		run("Analyze Particles...", "size="+Min_Nucleus_Area+"-"+Max_Nucleus_Area+" circularity="+minCN+"-"+maxCN+" show=Outlines clear");
+          		run("Green");
+          		run("Invert");
+          		ID = getImageID();
+          		selectWindow(title3);
+          		run("Revert");               run("8-bit");     	run("RGB Color");
+		imageCalculator("Transparant-zero create", title3, ID);
+		rename("Auto CY3 and CY5 for " + prefix);
+		imageCalculator("Transparent-zero", "Auto CY3 and CY5 for " + prefix, IDCY5);       		
+		selectImage(ID);          close();
+		selectWindow(title3);     run("Revert");      run("8-bit");       run("RGB Color");
+          		Cy3Count = nResults(); 
+        	}
+	
+  	if(nImages>=1 && indexOf(list[i],"DAPI")!=-1 && indexOf(list[i],prefix)!=-1 && nResultsCY3== 0) {
+          		run("8-bit");     	run("RGB Color");
+          		title3=getTitle();  print(title3);
+		imageCalculator("Transparent-zero create", title3, IDCY5);
+		rename("Auto CY3 and CY5 for " + prefix);     		
+		selectWindow(title3);	run("Revert");      run("8-bit");       run("RGB Color");
+		Cy3Count = nResults();
+          		
+        	}
+
+            if (nImages>=1 && (indexOf(list[i],"DAPI")!=-1)) {
+          		run("8-bit");
+          		title4=getTitle();
+          		run("MultiThresholder", "Maximum Entropy apply");
+          		run("Watershed");
+          		run("Invert");
+          		run("Analyze Particles...", "size="+Min_Nucleus_Area+"-"+Max_Nucleus_Area+" circularity="+minCN+"-"+maxCN+" show=Outlines clear");
+          		run("Red");
+          		run("Invert");
+		run("RGB Color");
+          		ID3 = getImageID();  
+          		selectWindow(title4);
+          		run("Revert");               run("8-bit");      run("RGB Color");
+          		imageCalculator("Transparent-zero create", title4, ID3);
+          		rename("Analysis of " + title4);
+          		selectImage(ID3);		close();
+		imageCalculator("Transparent-zero", "Analysis of " + titleCY3, IDCY5);
+		selectImage(IDCY5);	close();
+		name = substring(title4, 0, c);
+		
+                        print(f, name + "\t" + nResults  + "\t" + nResultsCY5 +"\t" + Cy3Count );
+           				
+				 if (nImages>=1 && (substring( title4, 0, c) == substring( title3, 0, c)) || Cy3Count == 0 ) {
+                      				run("Convert Images to Stack");
+					rename(name);
+					if (savestacks==true) {save(store+name+".tif");}
+				}
+                       
+
+
+            }
+				
+        
+        }	
+        if (nImages>=1 && (indexOf(list[i],"P")<c && indexOf(list[i],"P")!=-1)) {
+          		close();
+        }
+        if (nImages>=1 && indexOf(list[i],"GFP")!=-1) {
+          		close();
+        }
+        
+     }
