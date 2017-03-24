@@ -8,7 +8,7 @@ Images were captured using light at the excitation wavelengths of each fluoresce
 
 ![Same area imaged with three excitation wavelengths](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/Before_Pseudo-color.png)
 <p align="center">
-20a.5 DAPI    \t\t\t                                  20a.5 CY5               \t\t\t                         20a.5 CY3
+20a.5 DAPI                            20a.5 CY5                                      20a.5 CY3
 </p>
                  
 The script applies a color to images based on file name “suffix” (DAPI -> Blue, CY5 -> Green, and CY3 -> Red).  
