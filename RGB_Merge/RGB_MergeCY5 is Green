@@ -1,0 +1,79 @@
+    dir = getDirectory("Choose a Directory");
+    list = getFileList(dir);
+    start = getTime(); 
+
+  Dialog.create("Save Merged Images");  
+  Dialog.addCheckbox("Individual Image Stacks", false)
+  Dialog.addCheckbox("Save Images", false)
+  Dialog.show();
+
+  makestack = Dialog.getCheckbox();
+  savestacks = Dialog.getCheckbox();
+  if (savestacks == true) {store = getDirectory("Choose Folder to Save Files In");} 
+
+
+     setBatchMode(false);
+        stack = 0;
+        first = 0;
+      for (i=0; i<list.length; i++) {
+        path = dir+list[i];
+        showProgress(i, list.length);
+        if (!endsWith(path,"/")) open(path);
+        
+        if (nImages>=1 && (indexOf(list[i],"P")<4 && indexOf(list[i],"P")!=-1)) 
+        open();
+        	
+	if (nImages>=1 && (indexOf(list[i],"Cy3")!=-1 || indexOf(list[i],"CY3")!=-1)) {
+          		title1 = getTitle();
+		ID1=getImageID();
+          		prefix = substring(title1, 0, 6);
+		print(prefix);
+		run("Red");
+		run("RGB Color");
+	}    
+       
+        	if(nImages>=1 && indexOf(list[i],"CY5")!=-1 && indexOf(list[i],prefix)!=-1) {
+          		title2 = getTitle();
+		ID2=getImageID();
+		print(prefix);
+		run("Magenta");
+		run("RGB Color");
+        	}
+	
+	if(nImages>=1 && indexOf(list[i],"DAPI")!=-1 && indexOf(list[i],prefix)!=-1) {
+          		title3 = getTitle();
+		ID3=getImageID();
+                             	print(title3);
+		run("Blue");
+		run("RGB Color");
+        		run("Image Calculator...", "image1=["+title3+"] operation=Add image2=["+title2+"] create");
+		titleMB=getTitle();
+		ID4=getImageID();
+		run("Image Calculator...", "image1=["+titleMB+"] operation=Add image2=["+title1+"] create");
+		rename(prefix);
+
+			if (makestack == false) {
+				selectImage(ID1);
+				close();
+				selectImage(ID2);
+				close();
+				selectImage(ID3);
+				close();
+				selectImage(ID4);
+				close();	
+				}
+			
+			if (makestack == true) {
+			run("Images to Stack");
+			rename(prefix);
+			}
+			
+			if (savestacks == true) {save(store+prefix+".tif");}
+	
+	}
+
+	
+             }
+      
+
+	
