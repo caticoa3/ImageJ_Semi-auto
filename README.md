@@ -16,6 +16,9 @@ The script then merges the color images into a RGB image stack based on file nam
   <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/20a.5(RGB)_Merged.png?raw=true" alt="RGB Merged"/>
   \n20.5a
 </p>
+<p align="center">
+  20.5a
+</p>
 
 When manually counting positively labeled cells, each color (red, green or blue) in the merged image can be scrolled through in the image stack; instead of switching between images in different windows. 
 Images overlaid with this script allows the investigator to: 
