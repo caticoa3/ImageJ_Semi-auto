@@ -14,7 +14,7 @@ The script applies a color to images based on file name “suffix” (DAPI -> Bl
 The script then merges the color images into a RGB image stack based on file name “prefix” (i.e. - 20a.5)
 <p align="center">
   <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/20a.5(RGB)_Merged.png?raw=true" alt="RGB Merged"/>
-  <20.5a />
+  \n20.5a
 </p>
 
 When manually counting positively labeled cells, each color (red, green or blue) in the merged image can be scrolled through in the image stack; instead of switching between images in different windows. 
