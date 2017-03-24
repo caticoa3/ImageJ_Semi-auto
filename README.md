@@ -9,7 +9,7 @@ Images were captured using light at the excitation wavelengths of each fluoresce
 ![Same area imaged with three excitation wavelengths](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/BeforeRGB_Labeled1.png)
                  
 The script applies a color to images based on file name “suffix” (DAPI -> Blue, CY5 -> Green, and CY3 -> Red).
-![Pseudo-color applied](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/20a.5 RGB Montage.png)
+![Pseudo-color applied](https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/20a.5_RGB_Montage.png)
  
 The script then merges the color images into a RGB image stack based on file name “prefix” (i.e. - 20a.5)
 
