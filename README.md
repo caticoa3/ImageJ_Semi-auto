@@ -1,5 +1,7 @@
 # ImageJ_Semi-auto
 ImageJ Scripts for Microscope Images of Florescently Labled Cells
+
+--------------------------------------------------------------------------------------------------------------------------------------
 Color Merge Script
 
 To analyze cells in different experimental conditions, image analysis was necessary.  
@@ -25,6 +27,7 @@ Images overlaid with this script allows the investigator to:
 2) Merge batches of 100s of images, saving time by not having to manually color and merge images
 3) Save one file with image counts instead of three files
 
+--------------------------------------------------------------------------------------------------------------------------------------
 Automated Image Analysis Script
 <p align="center">
   <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots1.PNG?raw=true" alt="Input GUI"/>
