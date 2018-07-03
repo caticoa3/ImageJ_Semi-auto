@@ -49,7 +49,7 @@ The script guides the researcher to count only those cells with the appropriate 
   <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots2.PNG?raw=true" alt="Input GUI and Results Table"/>
 </p>
 
-Similarly for images of CY5 and DAPI labeled nuclei (Rows 2 – 4 in proceeding image).  The script can accurately count nuclei because they are spaced apart and their contrast or intensity above background “noise” is large.  
+Similarly for images of CY5 and DAPI labeled nuclei (rows 2 – 4 in proceeding image).  The script can accurately count nuclei because they are spaced apart and their contrast or intensity above background “noise” is large.  
 
 A positive count creates an outline of the cell nuclei which is color coded and overlaid on the nuclei (DAPI image).  Outlines in red, blue and green indicate positive DAPI, CY5, and CY3 counts (see images labeled “Analysis of …” in proceeding image montage).
 
