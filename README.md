@@ -33,6 +33,7 @@ Images overlaid with this script allows the investigator to:
   <img src="https://github.com/caticoa3/ImageJ_Semi-auto/blob/master/ReadMe_images/WindowShots1.PNG?raw=true" alt="Input GUI"/>
 </p>
 Scripted ImageJ to perform the following tasks:
+
 1)	Automatically count the number of cells (DAPI labeled nuclei)
 2)	Automatically count the number of cells that had proliferated (CY5 labeled nuclei) 
 3)	Help determine which cells had changed into a specific cell type (CY3 label).   
